@@ -4,6 +4,10 @@
   background-color: aqua;
 }
 
+.country-container {
+  padding: 20px;
+}
+
 .main-box {
   width: 100%;
   margin: 0 auto;
@@ -13,4 +17,9 @@
   @media screen and (min-width: 470px) {
     padding: 30px;
   }
+}
+
+.card {
+  display: flex;
+  justify-content: center;
 }

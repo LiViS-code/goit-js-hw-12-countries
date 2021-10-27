@@ -27,3 +27,30 @@ body {
   border-radius: 5px;
   color: #001d1a;
 }
+
+.text {
+  margin: 0 0 5px;
+  @media screen and (min-width: 740px) {
+    margin: 0 0 10px;
+  }
+}
+
+.list {
+  margin: 0 0 5px 0;
+  @media screen and (min-width: 740px) {
+    margin: 0 0 10px;
+  }
+}
+
+.countries-list {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.description {
+  margin-right: 30px;
+  @media screen and (min-width: 740px) {
+    margin-right: 100px;
+  }
+}
