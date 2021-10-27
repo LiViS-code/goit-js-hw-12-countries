@@ -11,53 +11,51 @@ const ref = {
   output: document.querySelector('.country-box'),
 };
 
-ref.input.addEventListener('input', debounce(onInput, 1000));
+ref.input.addEventListener('input', debounce(onInput, 500));
 
 function onInput() {
-  if (!ref.input.value) {
-    ref.output.innerHTML = '';
-    return;
-  }
+  if (!ref.input.value) return markupOutput(0);
 
   fetchCountries(ref.input.value).then(data => {
-    const myStack = new Stack({
-      dir1: 'up',
-    });
-
     if (!data.length) {
-      ref.output.innerHTML = '';
-
-      error({
-        text: 'There is no such country. Refine your request.',
-        delay: 5000,
-        closer: false,
-        stack: myStack,
-        title: 'Eror!',
-        icon: false,
-        width: '250px',
-        sticker: false,
-      });
+      markupOutput(0);
+      errMsg('There is no such country. Refine your request.');
       return;
     }
 
     if (data.length > 10) {
-      error({
-        text: 'Too many matches found. Please enter amore specific query!',
-        delay: 5000,
-        closer: false,
-        stack: myStack,
-        title: 'Eror!',
-        icon: false,
-        width: '250px',
-        sticker: false,
-      });
+      errMsg('Too many matches found. Please enter amore specific query!');
     } else if (data.length > 2 && data.length <= 10) {
-      ref.output.innerHTML = '';
-      ref.output.insertAdjacentHTML('afterbegin', countriesList(data));
+      markupOutput(countriesList(data));
     } else {
-      ref.output.innerHTML = '';
-      ref.output.insertAdjacentHTML('afterbegin', countryCard(data[0]));
+      markupOutput(countryCard(data[0]));
     }
     return;
   });
+
+  function markupOutput(markup) {
+    ref.output.innerHTML = '';
+    if (markup) ref.output.insertAdjacentHTML('afterbegin', markup);
+    return;
+  }
+
+  function errMsg(message) {
+    const myStack = new Stack({
+      dir1: 'up',
+      firstpos1: 25,
+      push: 'top',
+      modal: true,
+    });
+
+    return error({
+      text: message,
+      delay: 3000,
+      closer: false,
+      stack: myStack,
+      title: 'ERROR!',
+      icon: false,
+      width: '250px',
+      sticker: false,
+    });
+  }
 }
