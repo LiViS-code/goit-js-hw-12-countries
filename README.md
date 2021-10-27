@@ -1,3 +1,11 @@
+# Задание
+
+## Создать плагин для поиска стран
+
+## Описание задания по ссылке:
+
+https://github.com/goitacademy/javascript-homework/tree/main/homework-12
+
 # Parcel boilerplate
 
 ## Скрытые файлы
