@@ -54,3 +54,10 @@ body {
     margin-right: 100px;
   }
 }
+
+.flag-img {
+  @media screen and (min-width: 740px) {
+    width: 250px;
+    height: 150px;
+  }
+}
