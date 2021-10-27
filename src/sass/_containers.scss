@@ -1,0 +1,14 @@
+.main-container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: aqua;
+}
+
+.main-box {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #01796d;
+  @media screen and (min-width: 470px) {
+    padding: 30px;
+  }
+}
