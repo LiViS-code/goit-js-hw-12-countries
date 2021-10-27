@@ -3,7 +3,7 @@
 ## Поиск стран
 
 Создай небольшое приложение поиска данных о стране по ее частичному или полному имени Используется
-[https://restcountries.com/](REST Countries)
+[REST Countries](https://restcountries.com/)
 
 ## Описание задания по ссылке:
 
