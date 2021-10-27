@@ -5,9 +5,11 @@
 }
 
 .main-box {
+  width: 100%;
+  margin: 0 auto;
   padding: 15px;
   border-radius: 10px;
-  background-color: #01796d;
+  background-color: #009688;
   @media screen and (min-width: 470px) {
     padding: 30px;
   }
