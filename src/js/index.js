@@ -19,8 +19,7 @@ function onInput() {
   fetchCountries(ref.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
-      errMsg('There is no such country. Refine your request.');
-      return;
+      return errMsg('There is no such country. Refine your request.');
     }
 
     if (data.length > 10) {
@@ -41,7 +40,7 @@ function onInput() {
 
   function errMsg(message) {
     const myStack = new Stack({
-      dir1: 'up',
+      dir1: 'right',
       firstpos1: 25,
       push: 'top',
       modal: true,
@@ -56,6 +55,7 @@ function onInput() {
       icon: false,
       width: '250px',
       sticker: false,
+      addClass: 'error-box',
     });
   }
 }
