@@ -6,17 +6,17 @@ import fetchCountries from './fetchCountries';
 import countryCard from '../templates/country-card.hbs';
 import countriesList from '../templates/countries-list.hbs';
 
-const ref = {
+const refs = {
   input: document.querySelector('#input'),
   output: document.querySelector('.country-box'),
 };
 
-ref.input.addEventListener('input', debounce(onInput, 500));
+refs.input.addEventListener('input', debounce(onInput, 500));
 
 function onInput() {
-  if (!ref.input.value) return markupOutput(0);
+  if (!refs.input.value) return markupOutput(0);
 
-  fetchCountries(ref.input.value).then(data => {
+  fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
       return errMsg('There is no such country. Refine your request.');
@@ -33,9 +33,8 @@ function onInput() {
   });
 
   function markupOutput(markup) {
-    ref.output.innerHTML = '';
-    if (markup) ref.output.insertAdjacentHTML('afterbegin', markup);
-    return;
+    if (markup) return (refs.output.innerHTML = markup);
+    return (refs.output.innerHTML = '');
   }
 
   function errMsg(message) {

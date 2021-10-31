@@ -3,6 +3,10 @@ body {
     'Open Sans', 'Helvetica Neue', sans-serif;
   // padding: 16px;
   font-size: 16px;
+  @media screen and(min-width: 740px) {
+    font-size: 30px;
+    line-height: 1.5;
+  }
   line-height: 1.5;
   font-weight: 700;
   background-color: #009688;
