@@ -27,7 +27,7 @@ function onInput() {
   fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
-      return errMsg('Такой страны не существует. Уточните свой запрос!');
+      return errMsg('Такой страны не найдено. Уточните свой запрос!');
     }
 
     if (data.length > 10) {
