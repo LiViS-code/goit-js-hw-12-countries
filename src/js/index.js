@@ -9,9 +9,17 @@ import countriesList from '../templates/countries-list.hbs';
 const refs = {
   input: document.querySelector('#input'),
   output: document.querySelector('.country-box'),
+  country: document.querySelector('.country-box'),
 };
 
 refs.input.addEventListener('input', debounce(onInput, 500));
+refs.country.addEventListener('click', e => {
+  if (e.target.className === 'name-country') {
+    refs.input.value = e.target.innerText;
+    return onInput();
+  }
+  return;
+});
 
 function onInput() {
   if (!refs.input.value) return markupOutput(0);
@@ -19,11 +27,11 @@ function onInput() {
   fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
-      return errMsg('There is no such country. Refine your request.');
+      return errMsg('Такой страны не существует. Уточните свой запрос!');
     }
 
     if (data.length > 10) {
-      errMsg('Too many matches found. Please enter amore specific query!');
+      errMsg('Найдено слишком много совпадений. Пожалуйста, введите более конкретный запрос!');
     } else if (data.length > 2 && data.length <= 10) {
       markupOutput(countriesList(data));
     } else {
@@ -33,8 +41,13 @@ function onInput() {
   });
 
   function markupOutput(markup) {
-    if (markup) return (refs.output.innerHTML = markup);
-    return (refs.output.innerHTML = '');
+    if (markup) {
+      refs.output.innerHTML = markup;
+      refs.output.style.display = 'block';
+    } else {
+      refs.output.style.display = 'none';
+      return (refs.output.innerHTML = '');
+    }
   }
 
   function errMsg(message) {
@@ -47,10 +60,10 @@ function onInput() {
 
     return error({
       text: message,
-      delay: 3000,
+      delay: 2000,
       closer: false,
       stack: myStack,
-      title: 'ERROR!',
+      title: 'ОШИБКА!',
       icon: false,
       width: '250px',
       sticker: false,
