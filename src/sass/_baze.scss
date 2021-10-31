@@ -21,7 +21,7 @@ body {
 .input-country {
   display: block;
   margin: 0 auto;
-  padding: 5px 10px;
+  padding: 5px 20px;
   font-size: 16px;
   line-height: 1.5;
   @media screen and(min-width: 740px) {
@@ -48,12 +48,26 @@ body {
 
 .countries-list {
   display: block;
-  width: 70%;
+  width: 90%;
+  @media screen and (min-width: 740px) {
+    width: 70%;
+  }
   margin: 0 auto;
 }
 
+.name-country {
+  text-decoration: underline 1px dashed aqua;
+}
+
+.name-country:hover,
+.name-country:focus {
+  cursor: pointer;
+  color: aqua;
+  font-weight: 700;
+}
+
 .description {
-  margin-right: 30px;
+  margin-right: 20px;
   @media screen and (min-width: 740px) {
     margin-right: 100px;
   }

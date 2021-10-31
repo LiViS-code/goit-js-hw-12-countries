@@ -1,11 +1,18 @@
 .main-container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   background-color: aqua;
 }
 
 .country-container {
   padding: 20px;
+}
+
+.country-box {
+  display: none;
+  padding: 30px;
+  border: 1px solid aqua;
+  border-radius: 10px;
 }
 
 .main-box {
