@@ -27,18 +27,21 @@ function onInput() {
 
   if (!refs.input.value.match(/^[a-zA-Z, ]*$/)) {
     markupOutput(0);
-    return errMsg('Используйте только латинские буквы!');
+    return errMsg('415', 'Используйте только латинские буквы!');
   }
 
   fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
-      return errMsg(`Страна с названием "${refs.input.value}" не найдена. Уточните запрос!`);
+      return errMsg(
+        data.status,
+        `Страна с названием "${refs.input.value}" не найдена. Уточните запрос!`,
+      );
     }
 
     if (data.length > 10) {
       markupOutput(0);
-      errMsg(`Найдено ${data.length} совпадений. Введите более конкретный запрос!`);
+      errMsg('300', `Найдено ${data.length} совпадений. Введите более конкретный запрос!`);
     } else if (data.length > 2 && data.length <= 10) {
       markupOutput(countriesList(data));
     } else {
@@ -57,7 +60,7 @@ function onInput() {
     }
   }
 
-  function errMsg(message) {
+  function errMsg(numErr, message) {
     const myStack = new Stack({
       dir1: 'right',
       firstpos1: 25,
@@ -70,7 +73,7 @@ function onInput() {
       delay: 2000,
       closer: false,
       stack: myStack,
-      title: 'ОШИБКА!',
+      title: `ОШИБКА - ${numErr}`,
       icon: false,
       width: '250px',
       sticker: false,
