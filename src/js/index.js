@@ -25,7 +25,7 @@ refs.country.addEventListener('click', e => {
 function onInput() {
   if (!refs.input.value) return markupOutput(0);
 
-  if (!refs.input.value.match(/^[a-zA-Z_ ]*$/)) {
+  if (!refs.input.value.match(/^[a-zA-Z]*$/)) {
     markupOutput(0);
     return errMsg('Используйте только латинские буквы.');
   }
