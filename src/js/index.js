@@ -16,13 +16,19 @@ refs.input.addEventListener('input', debounce(onInput, 500));
 refs.country.addEventListener('click', e => {
   if (e.target.className === 'name-country') {
     refs.input.value = e.target.innerText;
-    return onInput();
+    refs.output.classList.remove('show-js');
+    setTimeout(() => onInput(), 250);
   }
   return;
 });
 
 function onInput() {
   if (!refs.input.value) return markupOutput(0);
+
+  if (!refs.input.value.match(/^[a-zA-Z_ ]*$/)) {
+    markupOutput(0);
+    return errMsg('Используйте только латинские буквы.');
+  }
 
   fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
@@ -43,9 +49,9 @@ function onInput() {
   function markupOutput(markup) {
     if (markup) {
       refs.output.innerHTML = markup;
-      refs.output.style.display = 'block';
+      refs.output.classList.add('show-js');
     } else {
-      refs.output.style.display = 'none';
+      refs.output.classList.remove('show-js');
       return (refs.output.innerHTML = '');
     }
   }
