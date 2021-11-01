@@ -37,7 +37,8 @@ function onInput() {
     }
 
     if (data.length > 10) {
-      errMsg('Найдено слишком много совпадений. Пожалуйста, введите более конкретный запрос!');
+      markupOutput(0);
+      errMsg(`Найдено ${data.length} совпадений. Пожалуйста, введите более конкретный запрос!`);
     } else if (data.length > 2 && data.length <= 10) {
       markupOutput(countriesList(data));
     } else {
