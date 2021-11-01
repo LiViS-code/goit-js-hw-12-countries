@@ -1,4 +1,4 @@
-<h1 class="title">{{name}}</h1>
+<h1 class="title">{{nativeName}} ({{name}})</h1>
 <div class="card">
   <div class="description">
     <p class="text"><span class="option">Столица: </span>{{capital}}</p>
@@ -7,10 +7,11 @@
     <ul class="list">
       {{#each languages}}
       <li>
-        {{name}}
+        {{nativeName}} ({{name}})
       </li>
       {{/each}}
     </ul>
+    <p class="text"><span class="option">Площадь: </span>{{area}}&nbsp;км<sup>&nbsp;2</sup></p>
   </div>
 
   <div class="flag">
