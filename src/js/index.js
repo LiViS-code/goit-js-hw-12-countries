@@ -27,18 +27,18 @@ function onInput() {
 
   if (!refs.input.value.match(/^[a-zA-Z, ]*$/)) {
     markupOutput(0);
-    return errMsg('Используйте только латинские буквы.');
+    return errMsg('Используйте только латинские буквы!');
   }
 
   fetchCountries(refs.input.value).then(data => {
     if (!data.length) {
       markupOutput(0);
-      return errMsg('Такой страны не найдено. Уточните свой запрос!');
+      return errMsg(`Страна с названием "${refs.input.value}" не найдена. Уточните запрос!`);
     }
 
     if (data.length > 10) {
       markupOutput(0);
-      errMsg(`Найдено ${data.length} совпадений. Пожалуйста, введите более конкретный запрос!`);
+      errMsg(`Найдено ${data.length} совпадений. Введите более конкретный запрос!`);
     } else if (data.length > 2 && data.length <= 10) {
       markupOutput(countriesList(data));
     } else {
